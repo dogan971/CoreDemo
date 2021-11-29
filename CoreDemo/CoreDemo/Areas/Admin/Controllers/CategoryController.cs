@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concreate;
+using BusinessLayer.Validationrules;
 using DataAccessLayer.Concreate;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concreate;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             return View(values);
         }
  
+
         [HttpGet]
         public IActionResult AddCategory()
         {
@@ -37,9 +40,22 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category p)
         {
-            p.categoryStatus = true;
-            cm.Add(p);
-            return View();
+            CategoryValidator cv = new CategoryValidator();
+            ValidationResult validation = cv.Validate(p);
+            if (validation.IsValid)
+            {
+                p.categoryStatus = true;
+                cm.Add(p);
+                return RedirectToAction("CategoryList", "Category");
+            }
+            else {
+                foreach (var item in validation.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+
+                return View(); }
+          
         }
        
     }

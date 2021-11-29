@@ -5,15 +5,46 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
 {
-@Html.Label("Kategori Adı")
-<br />
-@Html.TextBoxFor(x => x.categoryName,new {@class = "form-control"})
-<br />
-@Html.Label("Kategori Açıklaması")
-<br />
-@Html.TextAreaFor(x=>x.categoryDescription,10,3,new {@class="form-control" })
-<br />
+    @Html.Label("", "Kategori Adı", new { @style = " font-weight: bold;" })
+    <br />
+    @Html.TextBoxFor(x => x.categoryName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.categoryName, "", new { @style = "color:red;" })
+    <br />
+    <br />
+    @Html.Label("", "Kategori Açıklaması", new { @style = " font-weight: bold;" })
+    <br />
+    @* @Html.TextAreaFor(x => x.categoryDescription, 10, 3, new { @class = "form-control" })*@
+    <textarea name="categoryDescription" id="user-message" class="form-control" rows="15" ></textarea>
+    <input id="char-count" value="50/0" class="form-control" type="text" readonly />
+    @Html.ValidationMessageFor(x => x.categoryDescription, "", new { @style = "color:red;" })
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Ekle" />
 }
-<input type="button" class="btn btn-primary" value="ekle"/>
+
+
+<script>
+    $(function () {
+
+        const txtMessage = $("#user-message");
+        const txtCharCount = $("#char-count");
+        txtchar = 50;
+        charCount = 0;
+
+        txtMessage.keydown(function () {
+            charCount = $(this).val().length;
+            txtCharCount.val(`50/${charCount}`);
+        });
+
+        txtMessage.keyup(function (event) {
+            if (event.target.value.length > txtchar) {
+                event.target.value = event.target.value.substring(0, txtchar);
+                return;
+            }
+        });
+    });
+</script>
