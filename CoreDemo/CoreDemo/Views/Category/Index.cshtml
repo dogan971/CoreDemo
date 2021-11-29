@@ -1,0 +1,40 @@
+﻿@using EntityLayer.Concreate
+@model List<Category>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Category</title>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered ">
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th>Category Status</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            @foreach(var x in Model)
+            {
+        <tr>
+            <td>@x.categoryID</td>
+            <td>@x.categoryName</td>
+            <td>@x.categoryStatus</td>
+            <td><a href="#" class="btn btn-primary" style="text-decoration:none;">Details</a></td>
+            <td><a class="btn btn-success">Update</a></td>
+            <td><a class="btn btn-warning">Delete</a></td>
+        </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿@using EntityLayer.Concreate
+@model Message2
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+    <label> <strong>Mesajı Gönderen</strong></label><br />
+    @Html.TextBoxFor(x => x.Sender.writerName, new { @class = "form-control" })
+    <label> <strong>Mesajın Konusu</strong></label><br />
+    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+    <label> <strong>Mesajın Detayları</strong></label><br />
+    @Html.TextAreaFor(x =>x.MessageDetails ,5,30, new {@class="form-control" })
+   <input type="button" class="btn btn-primary" value="Mesajlara Dön"/>
+
+
+ 
+

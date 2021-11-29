@@ -1,0 +1,17 @@
+﻿@model List<EntityLayer.Concreate.Category>
+
+<div class="tech-btm">
+    <h4>Categories</h4>
+    @foreach(var x in Model)
+    {
+
+
+    <ul class="list-group single">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            @x.categoryName
+            <span class="badge badge-primary badge-pill"> @x.categoryID</span>
+        </li>
+      
+    </ul>
+    }
+</div>

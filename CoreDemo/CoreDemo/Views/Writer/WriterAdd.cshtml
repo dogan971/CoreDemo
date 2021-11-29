@@ -1,0 +1,50 @@
+﻿@model CoreDemo.Models.AddProfileImage
+@{
+    ViewData["Title"] = "WriterAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<form method="post" class="form-group" enctype="multipart/form-data">
+
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Basic form elements</h4>
+                <p class="card-description"> Basic form elements </p>
+                <div class="forms-sample">
+                    <div>@Html.HiddenFor(x => x.writerID)</div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" asp-for="writerName" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail3" asp-for="writerMail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Password</label>
+                        <input type="text" class="form-control" asp-for="writerPassword" id="password"  />
+
+                    </div>
+                   
+
+                    <div class="form-group">
+                        <label>Yazar Görseli</label>
+                        <br />
+                        <input type="file" asp-for="writerImage" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Yazar Hakkında </label>
+                     
+                        <textarea class="form-control" asp-for="writerAbout" id="exampleTextarea1" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,23 @@
+﻿@using EntityLayer.Concreate
+@model List<Message2>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+<table class="table table-bordered">
+    <tr><th>#</th><th>Konu</th><th>Gönderen</th><th>Tarih</th><th>Mesajı Aç</th></tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@item.MessageId</td>
+            <td>@item.Subject</td>
+            <td>@item.Sender.writerName</td>
+            <td>@(((DateTime)item.MessageDateTime).ToShortDateString())</td>
+            <td><a href="/Message/Details/@item.MessageId" type="button" class="btn btn-warning"/>Mesaj Detayları</td>
+        </tr>
+
+    }
+
+</table>
+<input type="button" value="Yeni Mesaj Oluştur" class="btn btn-primary" />

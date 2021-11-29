@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concreate.Blog
+@{
+    ViewData["Title"] = "UpdateBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateBlog", "Blog", FormMethod.Post))
+{
+
+    @Html.HiddenFor(x => x.blogID)
+    @Html.HiddenFor(x => x.writerID)
+    @Html.HiddenFor(x => x.blogCreateDate)
+    <br />
+    <h4>Blog  Başlığı</h4>
+    <br />
+    <input type="text" asp-for="blogTitle" class="form-control" />
+    <br />
+    <h4>Blog Thumbnail Image</h4>
+    <br />
+    <input type="text" asp-for="blogThumbnailImage" class="form-control" />
+    <br />
+    <h4>Blog Görseli</h4>
+    <br />
+    <input type="text" asp-for="blogImage" class="form-control" />
+    <br />
+    <h4>Blog Kategori</h4>
+    <br />
+    @Html.DropDownListFor(x => x.categoryID, (IEnumerable<SelectListItem>)ViewBag.val1, null, new { @class = "form-control" })
+    <br />
+    <h4>Blog İçeriyi</h4>
+    <br />
+    @Html.TextAreaFor(x => x.blogContent, 10, 3, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary" type="submit">Güncelle</button>
+}
+
+

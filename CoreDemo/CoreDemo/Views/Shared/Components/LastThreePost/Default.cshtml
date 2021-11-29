@@ -1,0 +1,41 @@
+﻿@model List<EntityLayer.Concreate.Blog>
+
+
+<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+
+    <div class="tech-btm">
+        <h3>Son Postlar</h3>
+        @foreach(var x in Model)
+           {          
+        <div class="blog-grids row mb-3">
+            <div class="col-md-5 blog-grid-left">
+                <a href="/Blog/BlogDetails/@x.blogID">
+                    <img src="@x.blogImage" class="card-img-top img-fluid" alt="">
+                </a>
+            </div>
+            <div class="col-md-7 blog-grid-right">
+
+                <h5>
+                    <a href="/Blog/BlogDetails/@x.blogID">
+                        @if (@x.blogContent != null && @x.blogContent.Length > 50)
+                        {
+                            @x.blogContent.Substring(0, @x.blogContent.Substring(0, 100).LastIndexOf(" "))
+                        }
+                        else
+                        {
+                            @x.blogContent
+                        }
+
+                    </a>
+                </h5>
+                <div class="sub-meta">
+                    <span>
+                        <i class="far fa-clock"></i> @(((DateTime)x.blogCreateDate).ToString("ddd-MMM-yyy"))
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@using EntityLayer.Concreate
+@model Writer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Userlayout.cshtml";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Register Now</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                <form method="post">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom01">First name</label>
+
+                            <input type="text" asp-for="writerName" class="form-control" id="validationDefault01" placeholder="">
+                            @Html.ValidationMessageFor(x => x.writerName, "", new { @class = "color:red;" })
+
+                        </div>
+
+
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1 mb-2">Password</label>
+                            <input type="password" asp-for="writerPassword" class="form-control" id="password1" placeholder="">
+                            @Html.ValidationMessageFor(x => x.writerPassword, "", new { @class = "color:red;" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="validationCustom02">Mail</label>
+                            <input type="email" asp-for="writerMail" class="form-control" id="mail" placeholder="">
+                            @Html.ValidationMessageFor(x => x.writerMail, "", new { @class = "color:red;" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword2 mb-2">Resim seç </label>
+                            <input type="password" asp-for="writerImage" class="form-control" id="Image"
+                                   placeholder="">
+
+                        </div>
+
+                        <select asp-items="ViewBag.item" class="form-control"></select>
+
+
+                        <p style="margin-top:15px;">
+                            <a href="#" id="btn1" >Şartları okudum </a>
+                        </p>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary submit mb-4" style="margin-top:15px;">Register</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        $('#btn1').click(function () {
+
+            swal("Sitemizde verdiginiz falan filan....");
+        })
+    </script>
+</section>

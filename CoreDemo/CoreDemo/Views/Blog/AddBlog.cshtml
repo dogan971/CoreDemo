@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concreate.Blog
+ 
+@{
+    ViewData["Title"] = "AddBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+
+<form method="post" class="form-control">
+    <b>Blog Title ını Giriniz</b>
+    <input asp-for="blogTitle" class="form-control" />
+    @Html.ValidationMessageFor(x => x.blogTitle, "", new { @class = "color:red;" })
+    <b>Blog Content ini Giriniz</b>
+    <input asp-for="blogContent" class="form-control" />
+    @Html.ValidationMessageFor(x => x.blogContent, "", new { @class = "color:red;" })
+    <b>Blog Image Seçin</b>
+    <input asp-for="blogImage" class="form-control" />
+    @Html.ValidationMessageFor(x => x.blogImage, "", new { @class = "color:red;" })
+    <b>Blog Kategorisi Girin</b>
+    @Html.DropDownListFor(x => x.categoryID, (List<SelectListItem>)ViewBag.val1, null, new { @class = "form-control" })
+    <button class="btn btn-success" style="margin-top:12px;"> Ekle </button>
+</form>
