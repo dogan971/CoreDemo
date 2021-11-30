@@ -1,2 +1,3 @@
 # CoreDemo
- Eğitim
+ Education
+ 
