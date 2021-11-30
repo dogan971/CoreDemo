@@ -57,6 +57,14 @@ namespace CoreDemo.Areas.Admin.Controllers
                 return View(); }
           
         }
+
+
+        public IActionResult CategoryDelete(int id)
+        {
+            var value = cm.getById(id);
+            cm.Delete(value);
+            return RedirectToAction("CategoryList");
+        }
        
     }
 }
