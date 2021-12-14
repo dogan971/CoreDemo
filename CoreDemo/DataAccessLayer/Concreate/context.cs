@@ -38,6 +38,7 @@ namespace DataAccessLayer.Concreate
         public DbSet<Notification> notifications { get; set; }
         public DbSet<Message> messages { get; set; }
         public DbSet<Message2> messages2 { get; set; }
+        public DbSet<Admin> admins{ get; set; }
 
 
     }
