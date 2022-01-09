@@ -8,6 +8,9 @@
 <br />
 <button type="button" id="btn" class="btn btn-primary">Yazar Listesi</button>
 <button type="button" id="btngetbyId" class="btn btn-success">Yazar Getir</button>
+<button type="button" id="addBtn" class="btn btn-secondary">Yazar Ekle</button>
+<button type="button" id="deleteBtn" class="btn btn-danger">Yazar Sil</button>
+
 
 <br />
 <br />
@@ -16,8 +19,16 @@
 </div>
 <div id="getbyId"> Buraya 1 yazar gelecek</div>
 <br />
-<div> <input type="text" id="id" class="form-control" placeholder="Yazar ID Değerini Girin"/> </div>
-
+<div> <input type="text" id="id" class="form-control" placeholder="Aranıcak Yazarın ID Değerini Girin" /> </div>
+<hr />
+<div>
+    <input type="text" class="form-control" id="addDiv" placeholder="Yazar ID" />
+    <input type="text" class="form-control" id="nameDiv" placeholder="Yazar Adı" />
+</div>
+<br />
+<div>
+    <input type="text" class="form-control" id="deleteDiv" placeholder="Silinecek Yazar ID" />
+</div>
 @section scripts{
     <script>
         $("#btn").click(() => {
@@ -53,11 +64,42 @@
                     id: id
                 },
                 success: (x) => {
-                    console.log(x);
+                    let w = jQuery.parseJSON(x);
+                    console.log(w);
+                    let getValue = `<table class=table table-bordered><tr><th>YazarID</th><th>YazarAdı</th></tr>
+                            <tr><td>${w.Id}</td><td>${w.Name}</td></tr></table>`;
+                    $("#getbyId").html(getValue);
                 }
             });
 
 
+        });
+        $("#addBtn").click((x) => {
+            let writer = {
+                Id: $("#addDiv").val(),
+                Name: $("#nameDiv").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Writer/addWriter/",
+                data: writer,
+                success: (x) => {
+                    let result = jQuery.parseJSON(x);
+                    alert("Yazar Eklendi");
+                }
+            });
+        });
+        $("#deleteBtn").click((x) => {
+            let id = $("#deleteDiv").val();
+            $.ajax({
+                url: "/Admin/Writer/deleteWriter/" + id,
+                type: "POST",
+                dataType: "json",
+                success: (x) => {
+                    
+                    alert("Yazar Silme Başarılı");
+                }
+            });
         });
     </script>
 }
