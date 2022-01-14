@@ -1,3 +1,4 @@
 # CoreDemo
- Education
+ .net core 5.0 
+ training series
  
